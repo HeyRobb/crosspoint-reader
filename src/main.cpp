@@ -430,10 +430,14 @@ void loop() {
     return;
   }
 
-  // Refresh screen when power button is short-pressed with FORCE_REFRESH setting.
-  if (SETTINGS.shortPwrBtn == CrossPointSettings::SHORT_PWRBTN::FORCE_REFRESH &&
+  // Toggle tilt page turn when power button is short-pressed with TOGGLE_TILT setting.
+  if (SETTINGS.shortPwrBtn == CrossPointSettings::SHORT_PWRBTN::TOGGLE_TILT &&
       mappedInputManager.wasReleased(MappedInputManager::Button::Power)) {
-    LOG_DBG("MAIN", "Manual screen refresh triggered");
+    SETTINGS.tiltPageTurn = (SETTINGS.tiltPageTurn == CrossPointSettings::TILT_OFF)
+                                ? CrossPointSettings::TILT_NORMAL
+                                : CrossPointSettings::TILT_OFF;
+    SETTINGS.saveToFile();
+    LOG_DBG("MAIN", "Tilt page turn toggled to %d", SETTINGS.tiltPageTurn);
     RenderLock lock;
     renderer.displayBuffer(HalDisplay::HALF_REFRESH);
   }
