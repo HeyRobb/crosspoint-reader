@@ -1,8 +1,9 @@
 name: CI (build)
 
 on:
+  workflow_dispatch:
   push:
-    branches: [master]
+    branches: [Rob1.3]
   pull_request:
 
 permissions:
