@@ -321,6 +321,10 @@ int CrossPointSettings::getRefreshFrequency() const {
   switch (refreshFrequency) {
     case REFRESH_1:
       return 1;
+    case REFRESH_2:
+      return 2;
+    case REFRESH_3:
+      return 3;
     case REFRESH_5:
       return 5;
     case REFRESH_10:
