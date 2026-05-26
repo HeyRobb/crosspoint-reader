@@ -438,8 +438,7 @@ void loop() {
                                 : CrossPointSettings::TILT_OFF;
     SETTINGS.saveToFile();
     LOG_DBG("MAIN", "Tilt page turn toggled to %d", SETTINGS.tiltPageTurn);
-    RenderLock lock;
-    renderer.displayBuffer(HalDisplay::HALF_REFRESH);
+    activityManager.requestUpdate(true);
   }
 
   // Refresh the battery icon when USB is plugged or unplugged.
