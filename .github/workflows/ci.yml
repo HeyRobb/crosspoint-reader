@@ -2,9 +2,6 @@ name: CI (build)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [Rob1.3]
-  pull_request:
 
 permissions:
   contents: read
