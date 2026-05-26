@@ -758,6 +758,13 @@ void BaseTheme::drawStatusBar(GfxRenderer& renderer, const float bookProgress, c
                         showBatteryPercentage);
   }
 
+  // Draw Tilt Page Turn indicator (X3 only — shows when tilt-to-turn is enabled)
+  if (SETTINGS.tiltPageTurn != CrossPointSettings::TILT_OFF) {
+    const int tiltBatteryOffset = SETTINGS.statusBarBattery ? (showBatteryPercentage ? 50 : 20) : 0;
+    const int tiltX = metrics.statusBarHorizontalMargin + orientedMarginLeft + 1 + tiltBatteryOffset + 12;
+    renderer.drawText(SMALL_FONT_ID, tiltX, textY, "~");
+  }
+
   // Draw Title
   if (!title.empty()) {
     textY -= textYOffset;
